@@ -55,6 +55,7 @@ function storeMetadata(data){
       img['latitude'] =  photo.location.latitude;
       img['longitude'] =  photo.location.longitude;
       img['url'] =  photo.images.standard_resolution.url;
+      console.log(img['url']);
       //Screw promises
       var result = Meteor.http.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${img['latitude']},${img['longitude']}&key=${GMAPS_KEY}`, {timeout:30000});
       if(result.statusCode==200) {
@@ -63,8 +64,14 @@ function storeMetadata(data){
             var response = Meteor.http.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=${GMAPS_KEY}`, {timeout:30000});
             if(response.statusCode==200){
               var json = JSON.parse(result.content);
-              img['cateogry'] = json.results[0].types;
-              list.push(img);
+              img['category'] = json.results[0].types;
+              console.log(img['category']);
+              database.ref('LatLong/' + data[0].user.id + '/'+img['id']).set({
+                latitude:img['latitude'],
+                longitude:img['longitude'],
+                url:img['url'],
+                category:img['category']
+              });
             }
     			} else {
     				console.log("Response issue: ", result.statusCode);
@@ -73,8 +80,4 @@ function storeMetadata(data){
     			}
     }
   }
-  //Fix promise
-  database.ref('LatLong/' + data[0].user.id).set({
-    photos: list
-  });
 }
