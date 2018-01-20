@@ -63,7 +63,7 @@ function storeMetadata(data){
             var response = Meteor.http.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=${GMAPS_KEY}`, {timeout:30000});
             if(response.statusCode==200){
               var json = JSON.parse(result.content);
-              img['cateogry'] = json.results[0].types);
+              img['cateogry'] = json.results[0].types;
               list.push(img);
             }
     			} else {
