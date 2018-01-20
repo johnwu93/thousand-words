@@ -17,6 +17,11 @@
         "clientId": "",
         "secret": "",
         "loginStyle": "popup"
+      },
+      "instagram": {
+        "clientId": "",
+        "secret": "",
+        "loginStyle": "popup"
       }
     }
   }

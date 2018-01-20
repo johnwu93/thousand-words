@@ -16,6 +16,10 @@ const handleLogin = (service, callback) => {
       requestPermissions: ['user:email'],
       loginStyle: 'popup',
     },
+    instagram: {
+      requestPermissions: ['basic'],
+      loginStyle: 'popup',
+    },
     google: {
       requestPermissions: ['email', 'profile'],
       requestOfflineToken: true,
@@ -27,6 +31,7 @@ const handleLogin = (service, callback) => {
     facebook: Meteor.loginWithFacebook,
     github: Meteor.loginWithGithub,
     google: Meteor.loginWithGoogle,
+    instagram: Meteor.loginWithInstagram,
   }[service](options, callback);
 };
 
@@ -34,6 +39,7 @@ const serviceLabel = {
   facebook: <span><Icon icon="facebook-official" /> Log In with Facebook</span>,
   github: <span><Icon icon="github" /> Log In with GitHub</span>,
   google: <span><Icon icon="google" /> Log In with Google</span>,
+  instagram: <span><Icon icon="instagram" /> Log In with Instagram</span>,
 };
 
 const OAuthLoginButton = ({ service, callback }) => (
