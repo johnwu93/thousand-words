@@ -36,10 +36,26 @@ const handleLogin = (service, callback) => {
 };
 
 const serviceLabel = {
-  facebook: <span><Icon icon="facebook-official" /> Log In with Facebook</span>,
-  github: <span><Icon icon="github" /> Log In with GitHub</span>,
-  google: <span><Icon icon="google" /> Log In with Google</span>,
-  instagram: <span><Icon icon="instagram" /> Log In with Instagram</span>,
+  facebook: (
+    <span>
+      <Icon icon="facebook-official" /> LOG IN WITH FACEBOOK
+    </span>
+  ),
+  github: (
+    <span>
+      <Icon icon="github" /> LOG IN WITH GITHUB
+    </span>
+  ),
+  google: (
+    <span>
+      <Icon icon="google" /> LOG IN WIHT GOOGLE
+    </span>
+  ),
+  instagram: (
+    <span>
+      <Icon icon="instagram" /> LOG IN WITH INSTAGRAM
+    </span>
+  ),
 };
 
 const OAuthLoginButton = ({ service, callback }) => (
@@ -53,7 +69,7 @@ const OAuthLoginButton = ({ service, callback }) => (
 );
 
 OAuthLoginButton.defaultProps = {
-  callback: (error) => {
+  callback: error => {
     if (error) Bert.alert(error.message, 'danger');
   },
 };

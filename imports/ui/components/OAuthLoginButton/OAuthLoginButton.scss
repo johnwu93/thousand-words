@@ -18,22 +18,33 @@
   &.OAuthLoginButton-facebook {
     background: $facebook;
     color: #fff;
-
+    border-radius: 100px;
     &:hover { background: darken($facebook, 5%); }
+    margin-bottom: 20px
   }
 
   &.OAuthLoginButton-google {
     background: $google;
     color: #fff;
-
+    border-radius: 100px;
     &:hover { background: darken($google, 5%); }
+    margin-bottom: 20px
   }
 
   &.OAuthLoginButton-github {
     background: $github;
     color: #fff;
-
+    border-radius: 100px;
     &:hover { background: darken($github, 5%); }
+    margin-bottom: 20px
+  }
+
+  &.OAuthLoginButton-instagram {
+    background: $instagram;
+    color: #fff;
+    border-radius: 100px;
+    &:hover { background: darken($instagram, 5%); }
+    margin-bottom: 20px
   }
 
   &:active {

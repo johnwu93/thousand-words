@@ -10,9 +10,7 @@ import './Index.scss';
 class Index extends Component {
   redirect() {
     if (Meteor.user()) {
-      return (
-        <Redirect to="/map" />
-      );
+      return <Redirect to="/map" />;
     }
     return <div />;
   }
@@ -20,12 +18,15 @@ class Index extends Component {
   render() {
     return (
       <div className="Index">
-        <h1>Thousand Words</h1>
-        <p>Bring your past experiences to life</p>
+        <h1>Getting Started</h1>
+        <p>Bring past experiences to life</p>
         <div className="Signup">
           <Row>
             <Col xs={12}>
-              <OAuthLoginButtons history={this.props.history} services={['instagram', 'facebook']} />
+              <OAuthLoginButtons
+                history={this.props.history}
+                services={['instagram', 'facebook']}
+              />
             </Col>
           </Row>
         </div>
@@ -38,6 +39,5 @@ class Index extends Component {
 Index.propTypes = {
   history: PropTypes.object.isRequired,
 };
-
 
 export default Index;
