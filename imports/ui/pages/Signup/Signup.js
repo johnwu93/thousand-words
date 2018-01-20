@@ -38,10 +38,10 @@ class Signup extends React.Component {
       },
       messages: {
         firstName: {
-          required: 'What\'s your first name?',
+          required: "What's your first name?",
         },
         lastName: {
-          required: 'What\'s your last name?',
+          required: "What's your last name?",
         },
         emailAddress: {
           required: 'Need an email address here.',
@@ -52,31 +52,36 @@ class Signup extends React.Component {
           minlength: 'Please use at least six characters.',
         },
       },
-      submitHandler() { component.handleSubmit(); },
+      submitHandler() {
+        component.handleSubmit();
+      },
     });
   }
 
   handleSubmit() {
     const { history } = this.props;
 
-    Accounts.createUser({
-      email: this.emailAddress.value,
-      password: this.password.value,
-      profile: {
-        name: {
-          first: this.firstName.value,
-          last: this.lastName.value,
+    Accounts.createUser(
+      {
+        email: this.emailAddress.value,
+        password: this.password.value,
+        profile: {
+          name: {
+            first: this.firstName.value,
+            last: this.lastName.value,
+          },
         },
       },
-    }, (error) => {
-      if (error) {
-        Bert.alert(error.reason, 'danger');
-      } else {
-        Meteor.call('users.sendVerificationEmail');
-        Bert.alert('Welcome!', 'success');
-        history.push('/documents');
-      }
-    });
+      error => {
+        if (error) {
+          Bert.alert(error.reason, 'danger');
+        } else {
+          Meteor.call('users.sendVerificationEmail');
+          Bert.alert('Welcome!', 'success');
+          history.push('/documents');
+        }
+      },
+    );
   }
 
   render() {
@@ -88,7 +93,7 @@ class Signup extends React.Component {
             <Row>
               <Col xs={12}>
                 <OAuthLoginButtons
-                  services={['facebook', 'github', 'google']}
+                  services={['facebook', 'github', 'google', 'instagram']}
                   emailMessage={{
                     offset: 97,
                     text: 'Sign Up with an Email Address',
@@ -96,7 +101,10 @@ class Signup extends React.Component {
                 />
               </Col>
             </Row>
-            <form ref={form => (this.form = form)} onSubmit={event => event.preventDefault()}>
+            <form
+              ref={form => (this.form = form)}
+              onSubmit={event => event.preventDefault()}
+            >
               <Row>
                 <Col xs={6}>
                   <FormGroup>
@@ -140,9 +148,13 @@ class Signup extends React.Component {
                 />
                 <InputHint>Use at least six characters.</InputHint>
               </FormGroup>
-              <Button type="submit" bsStyle="success">Sign Up</Button>
+              <Button type="submit" bsStyle="success">
+                Sign Up
+              </Button>
               <AccountPageFooter>
-                <p>Already have an account? <Link to="/login">Log In</Link>.</p>
+                <p>
+                  Already have an account? <Link to="/login">Log In</Link>.
+                </p>
               </AccountPageFooter>
             </form>
           </Col>
