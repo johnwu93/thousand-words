@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+
+import Map from '../../components/Map/Map';
 
 import './MapDisplay.scss';
 
-class Map extends Component {
+class MapDisplay extends Component {
   render() {
     return (
-      <div>
-        Put Map Here
+      <div className="MapDisplay">
+        <Map />
       </div>
     );
   }
 }
 
-export default Map;
+export default MapDisplay;
