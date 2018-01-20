@@ -35,18 +35,24 @@ class Login extends React.Component {
           required: 'Need a password here.',
         },
       },
-      submitHandler() { component.handleSubmit(); },
+      submitHandler() {
+        component.handleSubmit();
+      },
     });
   }
 
   handleSubmit() {
-    Meteor.loginWithPassword(this.emailAddress.value, this.password.value, (error) => {
-      if (error) {
-        Bert.alert(error.reason, 'danger');
-      } else {
-        Bert.alert('Welcome back!', 'success');
-      }
-    });
+    Meteor.loginWithPassword(
+      this.emailAddress.value,
+      this.password.value,
+      error => {
+        if (error) {
+          Bert.alert(error.reason, 'danger');
+        } else {
+          Bert.alert('Welcome back!', 'success');
+        }
+      },
+    );
   }
 
   render() {
@@ -58,7 +64,7 @@ class Login extends React.Component {
             <Row>
               <Col xs={12}>
                 <OAuthLoginButtons
-                  services={['facebook', 'github', 'google','instagram']}
+                  services={['facebook', 'github', 'google', 'instagram']}
                   emailMessage={{
                     offset: 100,
                     text: 'Log In with an Email Address',
@@ -66,7 +72,10 @@ class Login extends React.Component {
                 />
               </Col>
             </Row>
-            <form ref={form => (this.form = form)} onSubmit={event => event.preventDefault()}>
+            <form
+              ref={form => (this.form = form)}
+              onSubmit={event => event.preventDefault()}
+            >
               <FormGroup>
                 <ControlLabel>Email Address</ControlLabel>
                 <input
@@ -79,7 +88,9 @@ class Login extends React.Component {
               <FormGroup>
                 <ControlLabel className="clearfix">
                   <span className="pull-left">Password</span>
-                  <Link className="pull-right" to="/recover-password">Forgot password?</Link>
+                  <Link className="pull-right" to="/recover-password">
+                    Forgot password?
+                  </Link>
                 </ControlLabel>
                 <input
                   type="password"
@@ -88,9 +99,13 @@ class Login extends React.Component {
                   className="form-control"
                 />
               </FormGroup>
-              <Button type="submit" bsStyle="success">Log In</Button>
+              <Button type="submit" bsStyle="success">
+                Log In
+              </Button>
               <AccountPageFooter>
-                <p>{'Don\'t have an account?'} <Link to="/signup">Sign Up</Link>.</p>
+                <p>
+                  {"Don't have an account?"} <Link to="/signup">Sign Up</Link>.
+                </p>
               </AccountPageFooter>
             </form>
           </Col>
