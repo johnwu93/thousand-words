@@ -1,7 +1,7 @@
 {
   "public": {},
   "private": {
-    "MAIL_URL": "",
+    "MAIL_URL": "smtp://localhost:3000",
     "OAuth": {
       "facebook": {
         "appId": "",
@@ -19,8 +19,8 @@
         "loginStyle": "popup"
       },
       "instagram": {
-        "clientId": "69a2169f66d84dbdb4181fb098cb34f3",
-        "secret": "d0241be051e04dd9b8167a15caba1648",
+        "clientId": "",
+        "secret": "",
         "loginStyle": "popup"
       }
     }
