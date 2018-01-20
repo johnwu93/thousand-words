@@ -21,8 +21,8 @@ class AuthenticatedNavigation extends React.Component {
     return (
       <div>
         <Nav>
-          <LinkContainer to="/documents">
-            <NavItem eventKey={1} href="/documents">Map</NavItem>
+          <LinkContainer to="/map">
+            <NavItem eventKey={1} href="/map">Map</NavItem>
           </LinkContainer>
         </Nav>
         <Nav pullRight>

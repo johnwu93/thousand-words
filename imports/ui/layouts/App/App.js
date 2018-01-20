@@ -11,7 +11,7 @@ import Navigation from '../../components/Navigation/Navigation';
 import Authenticated from '../../components/Authenticated/Authenticated';
 import Public from '../../components/Public/Public';
 import Index from '../../pages/Index/Index';
-import Documents from '../../pages/Documents/Documents';
+import MapDisplay from '../../pages/MapDisplay/MapDisplay';
 import Signup from '../../pages/Signup/Signup';
 import Login from '../../pages/Login/Login';
 import Logout from '../../pages/Logout/Logout';
@@ -41,7 +41,7 @@ const App = props => (
         <Grid>
           <Switch>
             <Route exact name="index" path="/" component={Index} />
-            <Authenticated exact path="/documents" component={Documents} {...props} />
+            <Authenticated exact path="/map" component={MapDisplay} {...props} />
             <Authenticated exact path="/profile" component={Profile} {...props} />
             <Public path="/signup" component={Signup} {...props} />
             <Public path="/login" component={Login} {...props} />

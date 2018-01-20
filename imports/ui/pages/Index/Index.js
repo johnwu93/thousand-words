@@ -11,7 +11,7 @@ class Index extends Component {
   redirect() {
     if (Meteor.user()) {
       return (
-        <Redirect to="/documents" />
+        <Redirect to="/map" />
       );
     }
     return <div />;
