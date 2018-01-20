@@ -7,9 +7,9 @@ import OAuthLoginButton from '../OAuthLoginButton/OAuthLoginButton';
 
 import './OAuthLoginButtons.scss';
 
-const OAuthLoginButtons = ({ services, emailMessage }) => (services.length ? (
+const OAuthLoginButtons = ({ history, services, emailMessage }) => (services.length ? (
   <div className={`OAuthLoginButtons ${emailMessage ? 'WithEmailMessage' : ''}`}>
-    {services.map(service => <OAuthLoginButton key={service} service={service} />)}
+    {services.map(service => <OAuthLoginButton key={service} service={service} callback={(error) => { if (!error) history.push('/documents'); }} />)}
     {emailMessage ?
       <p className="EmailMessage" style={{ marginLeft: `-${emailMessage.offset}px` }}>
         {emailMessage.text}
@@ -17,9 +17,15 @@ const OAuthLoginButtons = ({ services, emailMessage }) => (services.length ? (
   </div>
 ) : <div />);
 
+OAuthLoginButtons.defaultProps = {
+  emailMessage: undefined,
+  history: undefined,
+};
+
 OAuthLoginButtons.propTypes = {
   services: PropTypes.array.isRequired,
-  emailMessage: PropTypes.object.isRequired,
+  emailMessage: PropTypes.object,
+  history: PropTypes.object,
 };
 
 const verificationComplete = new ReactiveVar(false);
