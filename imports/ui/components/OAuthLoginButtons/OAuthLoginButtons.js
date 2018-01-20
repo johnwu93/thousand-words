@@ -9,7 +9,7 @@ import './OAuthLoginButtons.scss';
 
 const OAuthLoginButtons = ({ history, services, emailMessage }) => (services.length ? (
   <div className={`OAuthLoginButtons ${emailMessage ? 'WithEmailMessage' : ''}`}>
-    {services.map(service => <OAuthLoginButton key={service} service={service} callback={(error) => { if (!error) history.push('/documents'); }} />)}
+    {services.map(service => <OAuthLoginButton key={service} service={service} callback={(error) => { if (!error) history.push('/map'); }} />)}
     {emailMessage ?
       <p className="EmailMessage" style={{ marginLeft: `-${emailMessage.offset}px` }}>
         {emailMessage.text}
