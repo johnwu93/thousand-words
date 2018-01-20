@@ -1,5 +1,5 @@
 {
-  "name": "Thousand Words",
+  "name": "thousand-words",
   "private": true,
   "scripts": {
     "start": "meteor --settings settings-development.json",
