@@ -13,11 +13,7 @@ const Navigation = props => (
       <Navbar.Brand>
         <Link to="/">Thousand Words</Link>
       </Navbar.Brand>
-      <Navbar.Toggle />
     </Navbar.Header>
-    <Navbar.Collapse>
-      {!props.authenticated ? <PublicNavigation /> : <AuthenticatedNavigation {...props} />}
-    </Navbar.Collapse>
   </Navbar>
 );
 
