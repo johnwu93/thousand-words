@@ -74,3 +74,9 @@
     }
   }
 }
+
+div.row_landing.row {
+  background-image: linear-gradient( rgba(0,0,0,.4), rgba(0,0,0,.4) ),
+   url("/thousandwords.gif");
+  background-size: cover;
+}
