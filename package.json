@@ -11,6 +11,7 @@
     "bcrypt": "^1.0.3",
     "commonmark": "^0.28.1",
     "core-js": "^2.5.1",
+    "firebase": "^4.9.0",
     "google-map-react": "^0.28.0",
     "handlebars": "^4.0.11",
     "jquery": "^2.2.4",
