@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { greatPlaceStyle } from './MarkerStyle.js';
+import { greatPlaceStyle, greatPlaceStyleHover } from './MarkerStyle.js';
 
 class Marker extends Component {
   render() {
+    const style = this.props.$hover ? greatPlaceStyleHover : greatPlaceStyle;
+
     return (
-       <div style={ greatPlaceStyle }>
-         {this.props.text}
-       </div>
+      <div style={style}>
+        {this.props.text}
+      </div>
     );
   }
 }
