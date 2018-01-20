@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import controllable from 'react-controllables';
 import PropTypes from 'prop-types';
 import GoogleMap from 'google-map-react';
+import ShareModal from '../ShareModal/ShareModal';
 
 import './Map.scss';
 import Marker from './Marker';
@@ -40,6 +41,7 @@ class Map extends Component {
 
     return (
       <div className="Map">
+
         <GoogleMap
           bootstrapURLKeys={{
             key: API_KEY,
@@ -55,6 +57,7 @@ class Map extends Component {
         >
           {Markers}
         </GoogleMap>
+        <ShareModal />
       </div>
     );
   }
