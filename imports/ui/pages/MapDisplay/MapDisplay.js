@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Row, Col, Image } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Col, Grid, Image, Row } from 'react-bootstrap';
 
 import Map from '../../components/Map/Map';
 
@@ -29,6 +30,28 @@ const data3 = {
   url: 'https://scontent.cdninstagram.com/vp/8df1d4d946d467bd1454622b8ddfd373/5A66342A/t51.2885-15/s320x320/e15/22430471_298987133919169_4631210793726115840_n.jpg',
 };
 
+const MapRow = ({ imgUrl1, imgUrl2 }) => (
+  <div className="py2">
+    <Row>
+      <Image className="photo-fit py2" src={imgUrl1} />
+      <Image className="photo-fit py2" src={imgUrl2} />
+    </Row>
+  </div>
+);
+
+MapRow.propTypes = {
+  imgUrl1: PropTypes.string.isRequired,
+  imgUrl2: PropTypes.string.isRequired,
+};
+
+const NavPhoto = ({ imgUrl }) => (
+  <Image className="photo-fit py2" src={imgUrl} />
+);
+
+NavPhoto.propTypes = {
+  imgUrl: PropTypes.string.isRequired,
+};
+
 class MapDisplay extends Component {
   constructor(props) {
     super(props);
@@ -42,16 +65,21 @@ class MapDisplay extends Component {
 
   render() {
     return (
-      <Row className="MapDisplay">
-        <Col className="Col" xs={12} md={8} >
-          <Map data={[data1, data2, data3]} setHoverKey={this.setHoverKey} />
-        </Col>
-        <Col className="Col" xs={12} md={4} >
-          <Image src={data1.url} />
-          <Image src={data2.url} />
-          <Image src={data3.url} />
-        </Col>
-      </Row>
+      <Grid>
+        <Row className="MapDisplay">
+          <Col className="Col" xs={12} sm={6}>
+            <NavPhoto imgUrl={data1.url} />
+            <NavPhoto imgUrl={data2.url} />
+            <NavPhoto imgUrl={data1.url} />
+            <NavPhoto imgUrl={data3.url} />
+          </Col>
+
+
+          <Col className="Col" xs={12} sm={6}>
+            <Map className="py2" data={[data1, data2, data3]} setHoverKey={this.setHoverKey} />
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }
