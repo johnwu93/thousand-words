@@ -117,14 +117,23 @@ class Profile extends React.Component {
       <div className="OAuthProfile">
         {Object.keys(user.services).map(service => (
           <div key={service} className={`LoggedInWith ${service}`}>
-            <img src={`/${service}.svg`} alt={service} />
-            <p>{`You're logged in with ${_.capitalize(service)} using the email address ${user.services[service].email}.`}</p>
+            <img
+              src={{
+              facebook: `/${service}.svg`,
+              google: `/${service}.svg`,
+              github: `/${service}.svg`,
+              instagram: `/${service}.png`,
+            }[service]}
+              alt={service}
+            />
+            <p>{`You're logged in with ${_.capitalize(service)}`}</p>
             <Button
               className={`btn btn-${service}`}
               href={{
                 facebook: 'https://www.facebook.com/settings',
                 google: 'https://myaccount.google.com/privacy#personalinfo',
                 github: 'https://github.com/settings/profile',
+                instagram: 'https://www.instagram.com/accounts/edit/',
               }[service]}
               target="_blank"
             >
