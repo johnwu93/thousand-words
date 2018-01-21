@@ -2,12 +2,22 @@
 @import '../../stylesheets/colors';
 
 div.ImageContainer {
-
   position: relative;
   text-align: center;
 
-  > img.photo-fit.py2.size {
+  > img {
     position: relative;
+    width: 100%;
+  }
+
+  p {
+    display: none;
+
+    position: absolute;
+    bottom: 0px;
+    color: white;
+    font-size: 14px;
+    background: #353434;
   }
 
   > div {
@@ -20,4 +30,13 @@ div.ImageContainer {
       color: white;
   }
 
+}
+
+.ImageContainer:hover {
+  p {
+    display: block;
+
+    margin-bottom: 0px;
+    padding: 10px;
+  }
 }

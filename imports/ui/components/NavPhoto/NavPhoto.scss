@@ -1,19 +1,17 @@
-.py2 {
-  margin-bottom: (2rem) !important;
-}
-
 .biggerPhoto {
   width: 300px;
   height: 400px;
 }
 
 .NavPhoto {
+  position: relative;
   transition: all 0.2s ease-in-out;
   .fade {
     transform: scale(1.1);
+    background-color: black;
   }
-  .size {
-    max-width: 150px;
-    height: 200px;
+
+  h3 {
+
   }
 }

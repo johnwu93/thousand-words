@@ -2,7 +2,7 @@ import React from 'react';
 import { Image } from 'react-bootstrap';
 import './ImageContainer.scss';
 
-const ImageContainer = ({ className, url, type }) => {
+const ImageContainer = ({ className, caption, url, type }) => {
   const mouseOver = (event) => {
     console.dir(event.target);
   }
@@ -10,6 +10,7 @@ const ImageContainer = ({ className, url, type }) => {
   return (
     <div className="ImageContainer">
       <Image className={className} src={url} />
+      <p>{caption}</p>
       <div onMouseOver={mouseOver}>{type}</div>
     </div>
   )

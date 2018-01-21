@@ -12,6 +12,10 @@ body {
   margin-bottom: 0px;
 }
 
+.navbar {
+  margin: 0px;
+}
+
 .is-home {
   height: 100%;
 
@@ -24,14 +28,18 @@ body {
   }
 
   .container {
-    width: 100%;
-    margin: 0px;
+
+    margin-bottom: -20px;
   }
 
 }
 
-@include breakpoint(tablet) {
-  .page-header {
-    margin-top: 20px;
-  }
+.App > .container {
+  margin-bottom: 0px;
+}
+
+.container {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
 }
