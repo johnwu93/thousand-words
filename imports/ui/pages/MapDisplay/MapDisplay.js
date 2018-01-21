@@ -36,6 +36,7 @@ class MapDisplay extends Component {
     super(props);
     this.state = { hoverKey: null };
     this.setHoverKey = this.setHoverKey.bind(this);
+    this.changeCenter = this.changeCenter.bind(this);
   }
 
   componentDidMount() {
@@ -57,10 +58,22 @@ class MapDisplay extends Component {
     this.setState({ hoverKey: key });
   }
 
+  setPhotoHoverKey(key) {
+    this.setState({ hoverKey: key });
+  }
+
+  changeCenter(coords) {
+    this.setState({ coords });
+  }
+
   fetchData(userId) {
     firebase.database().ref(`LatLong/${userId}`).once('value').then((snapshot) => {
       if (snapshot.val() !== null) {
-        this.setState({ photos: snapshot.val() });
+        const photos = snapshot.val();
+        const formattedPhotos = formatFetchedData(photos);
+        const firstLat = formattedPhotos[0].lat;
+        const firstLong = formattedPhotos[0].long;
+        this.setState({ photos, coords: [firstLat, firstLong] });
       }
     });
   }
@@ -72,12 +85,12 @@ class MapDisplay extends Component {
         <Grid>
           <Row className="MapDisplay">
             <Col className="Col" xs={12} sm={8} md={9} lg={10}>
-              <Map data={formattedPhotos} setHoverKey={this.setHoverKey} shortenUrl={this.props.shortenUrl} />
+              <Map data={formattedPhotos} setHoverKey={this.setHoverKey} shortenUrl={this.props.shortenUrl} center={this.state.coords} />
             </Col>
 
             <Col className="Col" xs={12} sm={4} md={3} lg={2}>
               <Scrollbars style={{ height: 'calc(100vh - 50px)' }}>
-                <NavPhotoList photos={formattedPhotos} hoverKey={this.state.hoverKey} />
+                <NavPhotoList photos={formattedPhotos} changeCenter={this.changeCenter} hoverKey={this.state.hoverKey} />
 
               </Scrollbars>
             </Col>
