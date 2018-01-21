@@ -4,6 +4,8 @@ import { Modal, Button } from 'react-bootstrap';
 
 import './ShareModal.scss';
 
+const SHARE_URL = `http://localhost:3000/map/${Meteor.userId()}`;
+
 class ShareModal extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +38,7 @@ class ShareModal extends React.Component {
         >
           <Modal.Body ref={body => (this.body = body)}>
             <h4 className="text-center">You brought your past experiences to life. <br />It's time to share it 🎉</h4>
-            <h5 className="text-center">{`http://localhost:3000/view/${Meteor.userId()}`}</h5>
+            <h5 className="text-center">{SHARE_URL}</h5>
           </Modal.Body>
         </Modal>
       </div>
