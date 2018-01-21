@@ -1,0 +1,17 @@
+@import '../../stylesheets/mixins';
+@import '../../stylesheets/colors';
+
+div.ImageContainer {
+
+  img.photo-fit.py2.size {
+    position: relative;
+  }
+
+  h6 {
+    position: absolute;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: 50px;
+  }
+
+}
