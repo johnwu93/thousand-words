@@ -33,6 +33,7 @@ class Index extends Component {
               </Col>
             </Row>
           </div>
+          <h6>By continuing, you agree to ThousandWord&apos;s Terms of Service, Privacy Policy</h6>
           {this.redirect()}
         </Col>
       </Row>

@@ -36,6 +36,7 @@
     }
   }
 
+
   footer {
     margin: 20px -20px -20px;
     border-top: 1px solid darken($cb-blue, 10%);
@@ -81,9 +82,9 @@ div.row_landing.row {
   background-size: cover;
 
   > div {
-    padding: 0;
+    padding: 20px 20px 10px 20px;
     margin-top: 15vh;
-    margin-bottom: 30vh;
+    margin-bottom: 10vh;
 
     > h1 {
       color: $gray;
@@ -92,6 +93,15 @@ div.row_landing.row {
 
     > p {
       font-weight: bold;
+    }
+
+    > h6 {
+      color: $gray-lightest;
+      font-size: 10px;
+      text-align: center;
+      font-weight: normal;
+      margin-top: 0px;
+      margin-bottom: 0px;
     }
   }
 }
