@@ -1,6 +1,8 @@
+import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Col, Grid, Row } from 'react-bootstrap';
+import * as firebase from 'firebase';
 
 import Map from '../../components/Map/Map';
 
@@ -41,14 +43,10 @@ class MapDisplay extends Component {
 
   componentDidMount() {
     const { match, history } = this.props;
-    if (match.params.id) {
-      // TODO
-      // check if user exists
-      // and load data from fi rebase
-      // if not, redirect to index page
-    } else {
-      // load data for Meteor.userId() from firebase
-    }
+    const userId = match.params.id ? match.params.id : Meteor.userId();
+
+    if (!userId) history.push('/');
+    // and load data from firebase
   }
 
   setHoverKey(key) {

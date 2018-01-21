@@ -10,18 +10,6 @@ Accounts.onCreateUser((options, user) => {
   return userToCreate;
 });
 
-const initFirebase = () => {
-  const CONFIG = {
-    apiKey: 'AIzaSyChc5HOuJVtN-4lXEFpIPJxm6hhJSxmG3A',
-    authDomain: 'thousand-words-22536.firebaseapp.com',
-    databaseURL: 'https://thousand-words-22536.firebaseio.com',
-    projectId: 'thousand-words-22536',
-    storageBucket: 'thousand-words-22536.appspot.com',
-    messagingSenderId: '846922175347',
-  };
-  if (!firebase.apps.length) firebase.initializeApp(CONFIG);
-};
-
 const storeMetadata = (data) => {
   const database = firebase.database();
   data.forEach((photo) => {
@@ -74,8 +62,6 @@ const storeMetadata = (data) => {
 Accounts.onLogin(() => {
   const ACCESS_TOKEN = Meteor.user().services.instagram.accessToken;
   const API_ENDPOINT = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${ACCESS_TOKEN}`;
-
-  initFirebase();
 
   const result = Meteor.http.get(API_ENDPOINT, { timeout: 30000 });
 
