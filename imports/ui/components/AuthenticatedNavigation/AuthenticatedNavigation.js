@@ -20,11 +20,6 @@ class AuthenticatedNavigation extends React.Component {
   render() {
     return (
       <div>
-        <Nav>
-          <LinkContainer to="/map">
-            <NavItem eventKey={1} href="/map">Map</NavItem>
-          </LinkContainer>
-        </Nav>
         <Nav pullRight>
           <NavDropdown eventKey={2} title={this.props.name} id="user-nav-dropdown">
             <LinkContainer to="/profile">

@@ -2,7 +2,6 @@
 @import '../../stylesheets/colors';
 
 .Index {
-  padding: 20px;
   background: #ffffff;
   text-align: center;
   border-radius: 3px;
@@ -15,7 +14,10 @@
   }
 
   h1 {
-    font-size: 28px;
+    font-family: 'Hipster Script', 'Open Sans';
+    font-size: 44px;
+    padding-left: 24px;
+    line-height: 40px;
   }
 
   p {
@@ -66,16 +68,6 @@
   }
 }
 
-@include breakpoint(desktop) {
-  .Index {
-    padding: 40px;
-
-    footer {
-      margin: 40px -40px -40px;
-    }
-  }
-}
-
 div.row_landing.row {
   background-image: linear-gradient( rgba(0,0,0,.4), rgba(0,0,0,.4) ),
    url("/thousandwords.gif");
@@ -83,7 +75,7 @@ div.row_landing.row {
   height: 100%;
 
   > div {
-    padding: 20px 20px 10px 20px;
+    padding: 32px 32px 10px 32px;
     margin-top: 30vh;
     margin-bottom: 30vh;
     margin-left: auto;
@@ -100,11 +92,11 @@ div.row_landing.row {
     }
 
     > h6 {
-      color: $gray-lightest;
+      color: #b9acac;
       font-size: 10px;
       text-align: center;
       font-weight: normal;
-      margin-top: 8px;
+      margin-top: 12px;
       margin-bottom: 0px;
     }
   }

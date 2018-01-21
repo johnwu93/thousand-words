@@ -38,6 +38,24 @@ body {
   margin-bottom: 0px;
 }
 
+.navbar {
+  .navbar-brand {
+    color: #555;
+    font-weight: bold;
+    padding-left: 40px;
+    font-family: 'Hipster Script', 'Open Sans';
+    line-height: 37px;
+    font-size: 25px;
+  }
+
+  background-color: white;
+  
+  #user-nav-dropdown {
+    color: black;
+    padding-top: 16px;
+  }
+}
+
 .container {
   width: 100%;
   margin: 0px;

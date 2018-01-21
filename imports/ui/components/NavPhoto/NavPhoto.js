@@ -11,7 +11,7 @@ const NavPhoto = ({ caption, name, url, isHighlighted, type }) => {
   }
   return (
     <div className="NavPhoto">
-      <ImageContainer className={className} caption={caption} url={url} type={type} />
+      <ImageContainer className={className} name={name} url={url} type={type} />
     </div>);
 };
 
@@ -19,7 +19,6 @@ NavPhoto.propTypes = {
   url: PropTypes.string.isRequired,
   isHighlighted: PropTypes.bool,
   type: PropTypes.string.isRequired,
-  caption: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };
 

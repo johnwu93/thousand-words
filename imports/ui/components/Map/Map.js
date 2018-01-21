@@ -11,10 +11,6 @@ import { K_SIZE } from './MarkerStyle.js';
 
 const API_KEY = 'AIzaSyB5iietztYKIpB-vD81e0mCpAgofaIayHY';
 
-const FancyFont = () => (
-  <i className="fa fa-send fa-3x" />
-);
-
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -37,13 +33,14 @@ class Map extends Component {
   }
 
   render() {
-    const Markers = this.props.data &&
+    console.log(this.props.data);
+    const markers = this.props.data &&
       this.props.data.map(item => (
         <Marker
           key={item.id}
           lat={item.lat}
           lng={item.long}
-          text={<FancyFont />}
+          categories={item.categories}
           hover={this.props.hoverKey === item.id}
         />
       ));
@@ -64,9 +61,9 @@ class Map extends Component {
           center={this.props.center}
           defaultZoom={this.props.zoom}
         >
-          {Markers}
+          {markers}
         </GoogleMap>
-        {Meteor.userId() ? <ShareModal shortenUrl={this.props.shortenUrl} /> : '' }
+        {Meteor.userId() ? <ShareModal shortenUrl={this.props.shortenUrl} /> : ''}
       </div>
     );
   }
