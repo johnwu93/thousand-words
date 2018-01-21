@@ -25,6 +25,15 @@ Meteor.methods({
         throw new Meteor.Error('500', exception);
       });
   },
+  'users.findId': function usersFindId(shortenUrl) {
+    check(shortenUrl, String);
+    try {
+      const user = Meteor.users.findOne({ 'profile.shortenUrl': shortenUrl });
+      if (user) return user._id;
+    } catch (exception) {
+      console.log(exception);
+    }
+  },
 });
 
 rateLimit({

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import PropTypes from 'prop-types';
+import { createContainer } from 'meteor/react-meteor-data';
 import { Modal, Button } from 'react-bootstrap';
 
 import './ShareModal.scss';
-
-const SHARE_URL = `http://localhost:3000/map/${Meteor.userId()}`;
 
 class ShareModal extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class ShareModal extends React.Component {
         >
           <Modal.Body ref={body => (this.body = body)}>
             <h4 className="text-center">You brought your past experiences to life. <br />It's time to share it 🎉</h4>
-            <h5 className="text-center">{SHARE_URL}</h5>
+            <h5 className="text-center">{`http://localhost:3000/${this.props.shortenUrl}`}</h5>
           </Modal.Body>
         </Modal>
       </div>
@@ -46,4 +46,11 @@ class ShareModal extends React.Component {
   }
 }
 
-export default ShareModal;
+ShareModal.propTypes = {
+  shortenUrl: PropTypes.string.isRequired,
+};
+
+export default createContainer((props) => {
+  const shortenUrl = props.shortenUrl ? props.shortenUrl : '';
+  return { shortenUrl };
+}, ShareModal);

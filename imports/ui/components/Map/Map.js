@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import controllable from 'react-controllables';
 import PropTypes from 'prop-types';
@@ -9,6 +10,10 @@ import Marker from './Marker';
 import { K_SIZE } from './MarkerStyle.js';
 
 const API_KEY = 'AIzaSyB5iietztYKIpB-vD81e0mCpAgofaIayHY';
+
+const FancyFont = () => (
+  <i className="fa fa-send fa-3x" />
+);
 
 class Map extends Component {
   constructor(props) {
@@ -38,7 +43,7 @@ class Map extends Component {
           key={item.id}
           lat={item.lat}
           lng={item.long}
-          text={item.type}
+          text={<FancyFont />}
           hover={this.props.hoverKey === item.id}
         />
       ));
@@ -61,7 +66,7 @@ class Map extends Component {
         >
           {Markers}
         </GoogleMap>
-        <ShareModal />
+        {Meteor.userId() ? <ShareModal shortenUrl={this.props.shortenUrl} /> : '' }
       </div>
     );
   }
@@ -72,6 +77,7 @@ Map.defaultProps = {
   zoom: 15,
   data: [],
   hoverKey: undefined,
+  shortenUrl: undefined,
 };
 
 Map.propTypes = {
@@ -81,6 +87,7 @@ Map.propTypes = {
   hoverKey: PropTypes.string,
   setHoverKey: PropTypes.func.isRequired,
   onCenterChange: PropTypes.func,
+  shortenUrl: PropTypes.string,
 };
 
 export default controllable(Map, ['center', 'data', 'clickKey']);

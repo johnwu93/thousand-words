@@ -1,26 +1,16 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import * as firebase from 'firebase';
+import * as stringSimilarity from 'string-similarity';
 
-const GMAPS_KEY = 'AIzaSyB5iietztYKIpB-vD81e0mCpAgofaIayHY';
+const GMAPS_KEY = 'AIzaSyBy0WPDISV691KJqlyuZboQpbaakOx2jiY';
 
 Accounts.onCreateUser((options, user) => {
   const userToCreate = user;
   if (options.profile) userToCreate.profile = options.profile;
+  userToCreate.profile.shortenUrl = Math.random().toString(36).slice(-5);
   return userToCreate;
 });
-
-const initFirebase = () => {
-  const CONFIG = {
-    apiKey: 'AIzaSyChc5HOuJVtN-4lXEFpIPJxm6hhJSxmG3A',
-    authDomain: 'thousand-words-22536.firebaseapp.com',
-    databaseURL: 'https://thousand-words-22536.firebaseio.com',
-    projectId: 'thousand-words-22536',
-    storageBucket: 'thousand-words-22536.appspot.com',
-    messagingSenderId: '846922175347',
-  };
-  if (!firebase.apps.length) firebase.initializeApp(CONFIG);
-};
 
 const storeMetadata = (data) => {
   const database = firebase.database();
@@ -33,40 +23,38 @@ const storeMetadata = (data) => {
       img.url = photo.images.standard_resolution.url;
       img.name = photo.location.name;
       img.caption = photo.caption.text;
-      database.ref(`LatLong/${photo.user.id}/${img.id}`).transaction((current) => {
-        if (current === null) {
-          return {
-            latitude: img.latitude,
-            longitude: img.longitude,
-            url: img.url,
-            // category:img['category'],
-            name: img.name,
-            caption: img.caption,
-          };
-        }
-      }, (error, committed, snapshot) => {
-        if (error) {
-          console.log('Transaction failed abnormally!', error);
-        } else if (!committed) {
-          console.log('We aborted the transaction (because ada already exists).');
-        } else {
-          console.log('User ada added!');
+
+      database.ref(`LatLong/${Meteor.userId()}/${img.id}`).once('value').then((snapshot) => {
+        if (snapshot.val() == null) {
+          Meteor.http.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${img.latitude},${img.longitude}&radius=50&key=${GMAPS_KEY}`, { timeout: 30000 }, (error, result) => {
+            if (!error && result.statusCode === 200) {
+              const myJson = JSON.parse(result.content);
+
+              const arr = [];
+              myJson.results.forEach((iter) => {
+                arr.push(iter.name);
+              });
+
+              const matches = stringSimilarity.findBestMatch(img.name, arr);
+              const bestMatch = matches.bestMatch.target;
+              myJson.results.forEach((iter) => {
+                if (iter.name === bestMatch) {
+                  img.category = iter.types;
+                }
+              });
+
+              database.ref(`LatLong/${Meteor.userId()}/${img.id}`).set({
+                latitude: img.latitude,
+                longitude: img.longitude,
+                url: img.url,
+                category: img.category,
+                name: img.name,
+                caption: img.caption,
+              });
+            }
+          });
         }
       });
-
-      // console.log(img['name']);
-      // console.log(img);
-      // Screw promises
-      // var result = Meteor.http.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${img['latitude']},${img['longitude']}&rankby=distance&keyword=${img['name']}&key=${GMAPS_KEY}`, {timeout:30000});
-      // if(result.statusCode==200) {
-    	// 			var myJson = JSON.parse(result.content);
-      //       console.log(myJson.results);
-      // }
-    	// 		 else {
-    	// 			console.log("Response issue: ", result.statusCode);
-    	// 			var errorJson = JSON.parse(result.content);
-    	// 			throw new Meteor.Error(result.statusCode, errorJson.error);
-    	// 		}
     }
   });
 };
@@ -74,8 +62,6 @@ const storeMetadata = (data) => {
 Accounts.onLogin(() => {
   const ACCESS_TOKEN = Meteor.user().services.instagram.accessToken;
   const API_ENDPOINT = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${ACCESS_TOKEN}`;
-
-  initFirebase();
 
   const result = Meteor.http.get(API_ENDPOINT, { timeout: 30000 });
 
