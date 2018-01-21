@@ -26,7 +26,7 @@ const storeMetadata = (data) => {
 
       database.ref(`LatLong/${Meteor.userId()}/${img.id}`).once('value').then((snapshot) => {
         if (snapshot.val() == null) {
-          Meteor.http.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${img['latitude']},${img['longitude']}&radius=50&key=${GMAPS_KEY}`, { timeout: 30000 }, (error, result) => {
+          Meteor.http.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${img.latitude},${img.longitude}&radius=50&key=${GMAPS_KEY}`, { timeout: 30000 }, (error, result) => {
             if (!error && result.statusCode === 200) {
               const myJson = JSON.parse(result.content);
 
@@ -55,20 +55,6 @@ const storeMetadata = (data) => {
           });
         }
       });
-
-      // console.log(img['name']);
-      // console.log(img);
-      // Screw promises
-      // var result = Meteor.http.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${img['latitude']},${img['longitude']}&rankby=distance&keyword=${img['name']}&key=${GMAPS_KEY}`, {timeout:30000});
-      // if(result.statusCode==200) {
-    	// 			var myJson = JSON.parse(result.content);
-      //       console.log(myJson.results);
-      // }
-    	// 		 else {
-    	// 			console.log("Response issue: ", result.statusCode);
-    	// 			var errorJson = JSON.parse(result.content);
-    	// 			throw new Meteor.Error(result.statusCode, errorJson.error);
-    	// 		}
     }
   });
 };
