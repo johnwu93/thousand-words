@@ -22,7 +22,7 @@ const storeMetadata = (data) => {
       img.longitude = photo.location.longitude;
       img.url = photo.images.standard_resolution.url;
       img.name = photo.location.name;
-      img.caption = photo.caption.text;
+      if (photo.caption.text != null) { img.caption = photo.caption.text; } else { img.caption = ''; }
 
       database.ref(`LatLong/${Meteor.userId()}/${img.id}`).once('value').then((snapshot) => {
         if (snapshot.val() == null) {
