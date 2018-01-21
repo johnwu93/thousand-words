@@ -219,7 +219,7 @@ class Profile extends React.Component {
     return (
       <div className="Profile">
         <Row>
-          <Col xs={12} sm={6} md={4}>
+          <Col xs={6} xsOffset={3} sm={4} smOffset={4} md={4} mdOffset={4}>
             <h4 className="page-header">Edit Profile</h4>
             <form ref={form => (this.form = form)} onSubmit={event => event.preventDefault()}>
               {this.renderProfileForm(loading, user)}
