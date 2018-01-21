@@ -42,6 +42,10 @@ class MapDisplay extends Component {
 
   componentDidMount() {
     const { match, history } = this.props;
+    // let userId = Meteor.userId();
+    // if (match.params.id) {
+    //   // find user with matching url
+    // }
     const userId = match.params.id ? match.params.id : Meteor.userId();
 
     if (!userId) {
@@ -65,9 +69,8 @@ class MapDisplay extends Component {
             <NavPhotoList photos={[data1, data2, data3]} hoverKey={this.state.hoverKey} />
           </Col>
 
-
           <Col className="Col" xs={12} sm={6}>
-            <Map data={[data1, data2, data3]} setHoverKey={this.setHoverKey} />
+            <Map data={[data1, data2, data3]} setHoverKey={this.setHoverKey} shortenUrl={this.props.shortenUrl} />
           </Col>
         </Row>
       </Grid>
@@ -75,9 +78,14 @@ class MapDisplay extends Component {
   }
 }
 
+MapDisplay.defaultProps = {
+  shortenUrl: undefined,
+};
+
 MapDisplay.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  shortenUrl: PropTypes.string,
 };
 
 export default MapDisplay;

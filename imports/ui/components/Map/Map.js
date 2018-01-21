@@ -61,7 +61,7 @@ class Map extends Component {
         >
           {Markers}
         </GoogleMap>
-        <ShareModal />
+        <ShareModal shortenUrl={this.props.shortenUrl} />
       </div>
     );
   }
@@ -72,6 +72,7 @@ Map.defaultProps = {
   zoom: 15,
   data: [],
   hoverKey: undefined,
+  shortenUrl: undefined,
 };
 
 Map.propTypes = {
@@ -81,6 +82,7 @@ Map.propTypes = {
   hoverKey: PropTypes.string,
   setHoverKey: PropTypes.func.isRequired,
   onCenterChange: PropTypes.func,
+  shortenUrl: PropTypes.string,
 };
 
 export default controllable(Map, ['center', 'data', 'clickKey']);
