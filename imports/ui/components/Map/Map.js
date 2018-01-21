@@ -10,6 +10,10 @@ import { K_SIZE } from './MarkerStyle.js';
 
 const API_KEY = 'AIzaSyB5iietztYKIpB-vD81e0mCpAgofaIayHY';
 
+const FancyFont = () => (
+  <i className="fa fa-send fa-3x" />
+);
+
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -32,14 +36,14 @@ class Map extends Component {
   }
 
   render() {
-    const Markers = this.props.data &&
-      this.props.data.map(item => (
+    const Markers = this.props.photos &&
+      this.props.photos.map(photo => (
         <Marker
-          key={item.id}
-          lat={item.lat}
-          lng={item.long}
-          text={item.type}
-          hover={this.props.hoverKey === item.id}
+          key={photo.id}
+          lat={photo.lat}
+          lng={photo.long}
+          text={<FancyFont />}
+          hover={this.props.hoverKey === photo.id}
         />
       ));
 
@@ -70,12 +74,12 @@ class Map extends Component {
 Map.defaultProps = {
   center: [34.411773, -119.847126],
   zoom: 15,
-  data: [],
+  photos: [],
   hoverKey: undefined,
 };
 
 Map.propTypes = {
-  data: PropTypes.array,
+  photos: PropTypes.array,
   center: PropTypes.array,
   zoom: PropTypes.number,
   hoverKey: PropTypes.string,
@@ -83,4 +87,4 @@ Map.propTypes = {
   onCenterChange: PropTypes.func,
 };
 
-export default controllable(Map, ['center', 'data', 'clickKey']);
+export default controllable(Map, ['center', 'photos', 'clickKey']);

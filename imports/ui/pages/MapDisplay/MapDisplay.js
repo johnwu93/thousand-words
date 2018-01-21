@@ -65,7 +65,7 @@ class MapDisplay extends Component {
 
 
           <Col className="Col" xs={12} sm={6}>
-            <Map data={[data1, data2, data3]} setHoverKey={this.setHoverKey} />
+            <Map photos={[data1, data2, data3]} setHoverKey={this.setHoverKey} />
           </Col>
         </Row>
       </Grid>
