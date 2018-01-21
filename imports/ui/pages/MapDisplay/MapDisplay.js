@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Col, Grid, Image, Row } from 'react-bootstrap';
+import { Col, Grid, Row } from 'react-bootstrap';
 
 import Map from '../../components/Map/Map';
 
+
 import './MapDisplay.scss';
+import NavPhotoList from '../../components/NavPhotoList/NavPhotoList';
 
 const data1 = {
   id: '1',
@@ -28,40 +30,6 @@ const data3 = {
   long: -119.847095,
   type: 'Music',
   url: 'http://via.placeholder.com/350x150',
-};
-
-
-const NavPhoto = ({ url, isHighlighted }) => {
-  if (isHighlighted) {
-    return <Image className="photo-fit py2 fade" src={url} />;
-  }
-  return <Image className="photo-fit py2" src={url} />;
-};
-
-NavPhoto.propTypes = {
-  url: PropTypes.string.isRequired,
-  isHighlighted: PropTypes.bool,
-};
-
-NavPhoto.defaultProps = {
-  isHighlighted: true,
-};
-
-const NavPhotoList = ({ photos, hoverKey }) => {
-  const navPhotos = photos.map((photo) => {
-    const isHighlighted = hoverKey === photo.id;
-    return <NavPhoto className="NavPhoto" url={photo.url} isHighlighted={isHighlighted} key={photo.id} />;
-  });
-  return (
-    <div>
-      {navPhotos}
-    </div>
-  );
-};
-
-NavPhotoList.propTypes = {
-  photos: PropTypes.oneOf([null, PropTypes.arrayOf(NavPhoto)]).isRequired,
-  hoverKey: PropTypes.string.isRequired,
 };
 
 class MapDisplay extends Component {
@@ -97,7 +65,7 @@ class MapDisplay extends Component {
 
 
           <Col className="Col" xs={12} sm={6}>
-            <Map className="py2" data={[data1, data2, data3]} setHoverKey={this.setHoverKey} />
+            <Map data={[data1, data2, data3]} setHoverKey={this.setHoverKey} />
           </Col>
         </Row>
       </Grid>
@@ -108,6 +76,6 @@ class MapDisplay extends Component {
 MapDisplay.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-}
+};
 
 export default MapDisplay;

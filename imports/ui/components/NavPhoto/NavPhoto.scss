@@ -1,0 +1,11 @@
+.py2 {
+  margin-top: (1rem) !important;
+  margin-bottom: (1rem) !important;
+}
+
+.NavPhoto {
+  transition: all .2s ease-in-out;
+  .fade {
+    transform: scale(1.1);
+  }
+}
