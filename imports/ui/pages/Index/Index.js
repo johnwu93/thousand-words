@@ -20,7 +20,7 @@ class Index extends Component {
     return (
 
       <Row className="row_landing">
-        <Col xs={6} xsOffset={3} sm={6} smOffset={3} className="Index" style={{ marginTop: '15vh', marginBottom: '15vh' }}>
+        <Col xs={6} xsOffset={3} sm={4} smOffset={4} className="Index" style={{ padding: 0, marginTop: '15vh', marginBottom: '30vh' }}>
           <h1 style={{ color: '#555' }}>Getting Started</h1>
           <p>Bring past experiences to life</p>
           <div className="Signup">
