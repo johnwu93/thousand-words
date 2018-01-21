@@ -69,8 +69,8 @@ class Map extends Component {
 }
 
 Map.defaultProps = {
-  center: [34.411773, -119.847126],
-  zoom: 15,
+  center: [34.059989, -118.340360],
+  zoom: 14,
   data: [],
   hoverKey: undefined,
   shortenUrl: undefined,
