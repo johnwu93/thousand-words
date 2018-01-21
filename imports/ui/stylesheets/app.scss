@@ -2,6 +2,11 @@
 @import './forms';
 @import './bootstrap-overrides';
 
+@font-face {
+  font-family: "Hipster Script";
+  src: url("hipster_script.otf") format("opentype");
+}
+
 h1, h2, h3, h4, h5, p, a, button {
   font-family: 'Open Sans', sans-serif;
 }

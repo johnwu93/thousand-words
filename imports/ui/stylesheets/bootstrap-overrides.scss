@@ -39,12 +39,20 @@ body {
 }
 
 .navbar {
-  background-color: white;
-
   .navbar-brand {
     color: #555;
     font-weight: bold;
-    padding-left: 32px;
+    padding-left: 40px;
+    font-family: 'Hipster Script', 'Open Sans';
+    line-height: 37px;
+    font-size: 25px;
+  }
+
+  background-color: white;
+  
+  #user-nav-dropdown {
+    color: black;
+    padding-top: 16px;
   }
 }
 

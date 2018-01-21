@@ -72,11 +72,11 @@ class MapDisplay extends Component {
       return (
         <Grid>
           <Row className="MapDisplay">
-            <Col className="Col" xs={12} sm={6} lg={10}>
+            <Col className="Col" xs={12} sm={8} md={9} lg={10}>
               <Map data={formattedPhotos} setHoverKey={this.setHoverKey} shortenUrl={this.props.shortenUrl} />
             </Col>
 
-            <Col className="Col" xs={12} sm={6} lg={2}>
+            <Col className="Col" xs={12} sm={4} md={3} lg={2}>
               <Scrollbars style={{ height: 'calc(100vh - 50px)' }}>
                 <NavPhotoList photos={formattedPhotos} hoverKey={this.state.hoverKey} />
 
