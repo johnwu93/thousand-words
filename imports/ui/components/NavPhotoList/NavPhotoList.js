@@ -7,7 +7,7 @@ import '../NavPhoto/NavPhoto.scss';
 const NavPhotoList = ({ photos, hoverKey }) => {
   const navPhotos = photos.map((photo) => {
     const isHighlighted = hoverKey === photo.id;
-    return <NavPhoto className="NavPhoto" url={photo.url} isHighlighted={isHighlighted} key={photo.id} />;
+    return <NavPhoto url={photo.url} isHighlighted={isHighlighted} key={photo.id} />;
   });
   return (
     <div>

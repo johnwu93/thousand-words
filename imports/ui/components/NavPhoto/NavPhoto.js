@@ -6,11 +6,11 @@ import './NavPhoto.scss';
 
 
 const NavPhoto = ({ url, isHighlighted }) => {
-  let className = 'photo-fit py2';
+  let className = 'photo-fit py2 size';
   if (isHighlighted) {
     className += ' fade';
   }
-  return <Image className={className} src={url} />;
+  return <div className="NavPhoto"><Image className={className} src={url} /></div>;
 };
 
 NavPhoto.propTypes = {

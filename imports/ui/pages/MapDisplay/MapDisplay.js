@@ -33,6 +33,15 @@ const data3 = {
   url: 'https://scontent.cdninstagram.com/vp/8df1d4d946d467bd1454622b8ddfd373/5A66342A/t51.2885-15/s320x320/e15/22430471_298987133919169_4631210793726115840_n.jpg',
 };
 
+const data4 = {
+  id: '3',
+  lat: 34.412819,
+  long: -119.847095,
+  type: 'Music',
+  url: 'https://scontent.cdninstagram.com/vp/8df1d4d946d467bd1454622b8ddfd373/5A66342A/t51.2885-15/s320x320/e15/22430471_298987133919169_4631210793726115840_n.jpg',
+};
+
+
 class MapDisplay extends Component {
   constructor(props) {
     super(props);
@@ -60,16 +69,16 @@ class MapDisplay extends Component {
     return (
       <Grid>
         <Row className="MapDisplay">
-          <Col className="Col" xs={12} sm={6}>
+          <Col className="Col" xs={12} sm={3}>
             <Scrollbars
               style={{ height: '100vh' }}
             >
-              <NavPhotoList photos={[data1, data2, data3]} hoverKey={this.state.hoverKey} />
+              <NavPhotoList photos={[data1, data2, data3, data4]} hoverKey={this.state.hoverKey} />
             </Scrollbars>
           </Col>
 
 
-          <Col className="Col" xs={12} sm={6}>
+          <Col className="Col" xs={12} sm={9}>
             <Map data={[data1, data2, data3]} setHoverKey={this.setHoverKey} />
           </Col>
         </Row>
