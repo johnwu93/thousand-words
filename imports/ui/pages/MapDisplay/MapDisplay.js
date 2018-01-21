@@ -68,7 +68,6 @@ class MapDisplay extends Component {
   render() {
     if (this.state.photos !== undefined) {
       const formattedPhotos = formatFetchedData(this.state.photos);
-      console.log(formattedPhotos);
       return (
         <Grid>
           <Row className="MapDisplay">

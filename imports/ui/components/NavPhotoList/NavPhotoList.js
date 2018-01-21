@@ -7,7 +7,7 @@ import '../NavPhoto/NavPhoto.scss';
 const NavPhotoList = ({ photos, hoverKey }) => {
   const navPhotos = photos.map((photo) => {
     const isHighlighted = hoverKey === photo.id;
-    return <NavPhoto caption={photo.caption} name={photo.name} url={photo.url} isHighlighted={isHighlighted} key={photo.id} type={photo.type} />;
+    return <NavPhoto caption={photo.caption} name={photo.name} url={photo.url} isHighlighted={isHighlighted} key={photo.id} />;
   });
   return (
     <div>
@@ -16,9 +16,13 @@ const NavPhotoList = ({ photos, hoverKey }) => {
   );
 };
 
+NavPhotoList.defaultProps = {
+  hoverKey: undefined,
+};
+
 NavPhotoList.propTypes = {
-  photos: PropTypes.oneOf([null, PropTypes.arrayOf(NavPhoto)]).isRequired,
-  hoverKey: PropTypes.string.isRequired,
+  photos: PropTypes.arrayOf(Object).isRequired,
+  hoverKey: PropTypes.string,
 };
 
 export default NavPhotoList;

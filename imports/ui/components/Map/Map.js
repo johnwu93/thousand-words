@@ -33,7 +33,6 @@ class Map extends Component {
   }
 
   render() {
-    console.log(this.props.data);
     const markers = this.props.data &&
       this.props.data.map(item => (
         <Marker
