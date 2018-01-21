@@ -15,7 +15,7 @@ class Map extends Component {
     super(props);
     this.onChildClick = this.onChildClick.bind(this);
     this.onChildMouseEnter = this.onChildMouseEnter.bind(this);
-    // this.onChildMouseLeave = this.onChildMouseLeave.bind(this);
+    this.onChildMouseLeave = this.onChildMouseLeave.bind(this);
   }
 
   onChildClick(key, childProps) {
@@ -25,6 +25,10 @@ class Map extends Component {
 
   onChildMouseEnter(key) {
     this.props.setHoverKey(key);
+  }
+
+  onChildMouseLeave() {
+    this.props.setHoverKey(null);
   }
 
   render() {

@@ -4,17 +4,20 @@
   margin-top: 0;
 }
 
-html, body {
-  margin: 0px; padding: 0px;
+html {
   height: 100%;
 }
 
+body {
+  margin-bottom: 0px;
+}
+
 .is-home {
+  height: 100%;
+  
   .App, .container, #react-root {
     height: 100%;
   }
-
-  margin-bottom: 0px;
 
   .navbar, .Footer {
     display: none;

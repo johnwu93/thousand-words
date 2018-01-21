@@ -68,7 +68,6 @@ const App = props => (
             <Route component={NotFound} />
           </Switch>
         </Grid>
-        <Footer />
       </div>
     ) : ''}
   </Router>
@@ -94,6 +93,7 @@ export default withTracker(() => {
   const loading = !Roles.subscription.ready();
   const name = user && user.profile && user.profile.name && getUserName(user.profile.name);
   const emailAddress = user && user.emails && user.emails[0].address;
+  setBodyClass(window.location.pathname);
 
   return {
     loading,

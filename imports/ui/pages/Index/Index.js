@@ -20,10 +20,10 @@ class Index extends Component {
     return (
 
       <Row className="row_landing">
-        <Col xs={6} xsOffset={3} sm={4} smOffset={4} className="Index" >
-          <h1>Getting Started</h1>
+        <div className="Index" >
+          <h1>Thousand Words</h1>
           <p>Bring past experiences to life</p>
-          <div className="Signup">
+          <div className="text-center Signup">
             <Row>
               <Col xs={12}>
                 <OAuthLoginButtons
@@ -33,8 +33,9 @@ class Index extends Component {
               </Col>
             </Row>
           </div>
+          <h6>By continuing, you agree to ThousandWord&apos;s Terms of Service, Privacy Policy</h6>
           {this.redirect()}
-        </Col>
+        </div>
       </Row>
     );
   }
