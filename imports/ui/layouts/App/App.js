@@ -25,6 +25,7 @@ import VerifyEmailAlert from '../../components/VerifyEmailAlert/VerifyEmailAlert
 import getUserName from '../../../modules/get-user-name';
 
 import './App.scss';
+import DefaultScrollbars from '../../pages/Test/DefaultScrollbars';
 
 const history = createBrowserHistory();
 
@@ -64,6 +65,7 @@ const App = props => (
             <Route name="verify-email" path="/verify-email/:token" component={VerifyEmail} />
             <Route name="recover-password" path="/recover-password" component={RecoverPassword} />
             <Route name="reset-password" path="/reset-password/:token" component={ResetPassword} />
+            <Route name="test" path="/test" component={DefaultScrollbars} />
             <Route component={NotFound} />
           </Switch>
         </Grid>
