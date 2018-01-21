@@ -4,6 +4,29 @@
   margin-top: 0;
 }
 
+html, body {
+  margin: 0px; padding: 0px;
+  height: 100%;
+}
+
+.is-home {
+  .App, .container, #react-root {
+    height: 100%;
+  }
+
+  margin-bottom: 0px;
+
+  .navbar, .Footer {
+    display: none;
+  }
+
+  .container {
+    width: 100%;
+    margin: 0px;
+  }
+
+}
+
 @include breakpoint(tablet) {
   .page-header {
     margin-top: 20px;

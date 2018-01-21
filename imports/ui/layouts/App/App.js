@@ -2,7 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
 import { Grid } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -26,8 +27,22 @@ import getUserName from '../../../modules/get-user-name';
 
 import './App.scss';
 
+const history = createBrowserHistory();
+
+const setBodyClass = (pathname) => {
+  if (pathname === '/') {
+    document.body.classList.add('is-home');
+  } else {
+    document.body.classList.remove('is-home');
+  }
+};
+
+history.listen((location) => {
+  setBodyClass(location.pathname);
+});
+
 const App = props => (
-  <Router>
+  <Router history={history}>
     {!props.loading ? (
       <div className="App">
         {props.authenticated ?

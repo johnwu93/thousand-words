@@ -62,8 +62,9 @@ class MapDisplay extends Component {
   componentDidMount() {
     const { match, history } = this.props;
     if (match.params.id) {
+      // TODO
       // check if user exists
-      // and load data from firebase
+      // and load data from fi rebase
       // if not, redirect to index page
     } else {
       // load data for Meteor.userId() from firebase
