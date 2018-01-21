@@ -33,15 +33,27 @@ const storeMetadata = (data) => {
       img.url = photo.images.standard_resolution.url;
       img.name = photo.location.name;
       img.caption = photo.caption.text;
-      console.log(img)
-      database.ref(`Latlong/${photo.user.id}/${img.id}`).set({
-        latitude: img.latitude,
-        longitude: img.longitude,
-        url: img.url,
-        // category:img['category'],
-        name: img.name,
-        caption: img.caption,
+      database.ref(`LatLong/${photo.user.id}/${img.id}`).transaction((current) => {
+        if (current === null) {
+          return {
+            latitude: img.latitude,
+            longitude: img.longitude,
+            url: img.url,
+            // category:img['category'],
+            name: img.name,
+            caption: img.caption,
+          };
+        }
+      }, (error, committed, snapshot) => {
+        if (error) {
+          console.log('Transaction failed abnormally!', error);
+        } else if (!committed) {
+          console.log('We aborted the transaction (because ada already exists).');
+        } else {
+          console.log('User ada added!');
+        }
       });
+
       // console.log(img['name']);
       // console.log(img);
       // Screw promises
