@@ -32,14 +32,8 @@ const storeMetadata = (data) => {
             caption: img.caption,
           };
         }
-      }, (error, committed, snapshot) => {
-        if (error) {
-          console.log('Transaction failed abnormally!', error);
-        } else if (!committed) {
-          console.log('We aborted the transaction (because ada already exists).');
-        } else {
-          console.log('User ada added!');
-        }
+      }, (error) => {
+        if (error) console.log('Transaction failed abnormally!', error);
       });
 
       // console.log(img['name']);
