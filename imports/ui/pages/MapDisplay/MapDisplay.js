@@ -9,28 +9,22 @@ import Map from '../../components/Map/Map';
 import './MapDisplay.scss';
 import NavPhotoList from '../../components/NavPhotoList/NavPhotoList';
 
-const data1 = {
-  id: '1',
-  lat: 34.412269,
-  long: -119.853971,
-  type: 'Sports',
-  url: 'https://scontent.cdninstagram.com/vp/c69639ead3498f11795bb76440bf22a9/5A661B3D/t51.2885-15/s320x320/e15/25018724_318566785309272_6481657784889769984_n.jpg',
+const formatSimpleData = function formatSimpleData({ category, latitude, longitude, url }) {
+  return {
+    category,
+    lat: latitude,
+    long: longitude,
+    url,
+  };
 };
 
-const data2 = {
-  id: '2',
-  lat: 34.412092,
-  long: -119.849937,
-  type: 'Coffee',
-  url: 'https://scontent.cdninstagram.com/vp/8df1d4d946d467bd1454622b8ddfd373/5A66342A/t51.2885-15/s320x320/e15/22430471_298987133919169_4631210793726115840_n.jpg',
-};
-
-const data3 = {
-  id: '3',
-  lat: 34.412819,
-  long: -119.847095,
-  type: 'Music',
-  url: 'http://via.placeholder.com/350x150',
+const formatFetchedData = function formatFetchedData(fetchedPhotosDict) {
+  return Object.keys(fetchedPhotosDict).map((fetchedPhotoId) => {
+    const fetchedPhoto = fetchedPhotosDict[fetchedPhotoId];
+    const formattedData = formatSimpleData(fetchedPhoto);
+    formattedData.id = fetchedPhotoId;
+    return formattedData;
+  });
 };
 
 class MapDisplay extends Component {
@@ -64,19 +58,35 @@ class MapDisplay extends Component {
   }
 
   render() {
-    return (
-      <Grid>
-        <Row className="MapDisplay">
-          <Col className="Col" xs={12} sm={6}>
-            <NavPhotoList photos={[data1, data2, data3]} hoverKey={this.state.hoverKey} />
-          </Col>
+    if (this.state.photos !== undefined) {
+      const formattedPhotos = formatFetchedData(this.state.photos);
+      console.log(formattedPhotos);
+      return (
+        <Grid>
+          <Row className="MapDisplay">
+            <Col className="Col" xs={12} sm={6}>
+              <NavPhotoList photos={formattedPhotos} hoverKey={this.state.hoverKey} />
+            </Col>
 
-          <Col className="Col" xs={12} sm={6}>
-            <Map data={[data1, data2, data3]} setHoverKey={this.setHoverKey} shortenUrl={this.props.shortenUrl} />
-          </Col>
-        </Row>
-      </Grid>
-    );
+            <Col className="Col" xs={12} sm={6}>
+              <Map data={formattedPhotos} setHoverKey={this.setHoverKey} shortenUrl={this.props.shortenUrl} />
+            </Col>
+          </Row>
+        </Grid>
+      );
+    } else {
+      return (
+        <Grid>
+          <Row className="MapDisplay">
+            <Col className="Col" xs={12} sm={6}>
+            </Col>
+            <Col className="Col" xs={12} sm={6}>
+            </Col>
+          </Row>
+        </Grid>
+      );
+    }
+
   }
 }
 
