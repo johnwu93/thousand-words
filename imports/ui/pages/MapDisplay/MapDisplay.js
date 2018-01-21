@@ -9,7 +9,9 @@ import Map from '../../components/Map/Map';
 import './MapDisplay.scss';
 import NavPhotoList from '../../components/NavPhotoList/NavPhotoList';
 
-const formatSimpleData = function formatSimpleData({ category, latitude, longitude, url }) {
+const formatSimpleData = function formatSimpleData({
+  category, latitude, longitude, url,
+}) {
   return {
     category,
     lat: latitude,
@@ -38,7 +40,11 @@ class MapDisplay extends Component {
     const { match, history } = this.props;
     if (match.params.id) {
       Meteor.call('users.findId', match.params.id, (error, userId) => {
-        userId ? this.fetchData(userId) : history.push('/');
+        if (userId) {
+          this.fetchData(userId);
+        } else {
+          history.push('/');
+        }
       });
     } else if (Meteor.userId()) {
       this.fetchData(Meteor.userId());
@@ -52,7 +58,7 @@ class MapDisplay extends Component {
   fetchData(userId) {
     firebase.database().ref(`LatLong/${userId}`).once('value').then((snapshot) => {
       if (snapshot.val() !== null) {
-        this.setState({ photos: snapshot.val() })
+        this.setState({ photos: snapshot.val() });
       }
     });
   }
@@ -74,19 +80,15 @@ class MapDisplay extends Component {
           </Row>
         </Grid>
       );
-    } else {
-      return (
-        <Grid>
-          <Row className="MapDisplay">
-            <Col className="Col" xs={12} sm={6}>
-            </Col>
-            <Col className="Col" xs={12} sm={6}>
-            </Col>
-          </Row>
-        </Grid>
-      );
     }
-
+    return (
+      <Grid>
+        <Row className="MapDisplay">
+          <Col className="Col" xs={12} sm={6} />
+          <Col className="Col" xs={12} sm={6} />
+        </Row>
+      </Grid>
+    );
   }
 }
 
