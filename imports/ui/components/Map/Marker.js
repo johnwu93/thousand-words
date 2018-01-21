@@ -17,8 +17,6 @@ class Marker extends Component {
           </img>
         </div>
       </div>
-
-
     );
   }
 }

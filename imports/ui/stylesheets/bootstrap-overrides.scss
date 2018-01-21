@@ -38,6 +38,16 @@ body {
   margin-bottom: 0px;
 }
 
+.navbar {
+  background-color: white;
+
+  .navbar-brand {
+    color: #555;
+    font-weight: bold;
+    padding-left: 32px;
+  }
+}
+
 .container {
   width: 100%;
   margin: 0px;
