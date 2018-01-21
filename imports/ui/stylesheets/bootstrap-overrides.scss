@@ -14,12 +14,12 @@ body {
 
 .is-home {
   height: 100%;
-  
+
   .App, .container, #react-root {
     height: 100%;
   }
 
-  .navbar, .Footer {
+  .navbar {
     display: none;
   }
 
