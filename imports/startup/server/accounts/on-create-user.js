@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 var firebase = require("firebase");
-const GMAPS_KEY = '';
+const GMAPS_KEY = 'AIzaSyB5iietztYKIpB-vD81e0mCpAgofaIayHY';
 
 Accounts.onCreateUser((options, user) => {
   const userToCreate = user;
@@ -33,7 +33,7 @@ Accounts.onLogin(() => {
 
 function initFirebase(){
   var config = {
-    apiKey: "",
+    apiKey: "AIzaSyChc5HOuJVtN-4lXEFpIPJxm6hhJSxmG3A",
     authDomain: "thousand-words-22536.firebaseapp.com",
     databaseURL: "https://thousand-words-22536.firebaseio.com",
     projectId: "thousand-words-22536",
@@ -55,29 +55,29 @@ function storeMetadata(data){
       img['latitude'] =  photo.location.latitude;
       img['longitude'] =  photo.location.longitude;
       img['url'] =  photo.images.standard_resolution.url;
-      console.log(img['url']);
-      //Screw promises
-      var result = Meteor.http.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${img['latitude']},${img['longitude']}&key=${GMAPS_KEY}`, {timeout:30000});
-      if(result.statusCode==200) {
-    				var myJson = JSON.parse(result.content);
-            var placeId = myJson.results[0].place_id.toString();
-            var response = Meteor.http.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=${GMAPS_KEY}`, {timeout:30000});
-            if(response.statusCode==200){
-              var json = JSON.parse(result.content);
-              img['category'] = json.results[0].types;
-              console.log(img['category']);
-              database.ref('LatLong/' + data[0].user.id + '/'+img['id']).set({
-                latitude:img['latitude'],
-                longitude:img['longitude'],
-                url:img['url'],
-                category:img['category']
+      img['name'] = photo.location.name;
+      img['caption'] = photo.caption.text;
+      database.ref('LatLong/' + data[0].user.id + '/'+img['id']).set({
+                 latitude:img['latitude'],
+                 longitude:img['longitude'],
+                 url:img['url'],
+                 //category:img['category'],
+                 name:img['name'],
+                 caption:img['caption']
               });
-            }
-    			} else {
-    				console.log("Response issue: ", result.statusCode);
-    				var errorJson = JSON.parse(result.content);
-    				throw new Meteor.Error(result.statusCode, errorJson.error);
-    			}
+      // console.log(img['name']);
+      // console.log(img);
+      //Screw promises
+      // var result = Meteor.http.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${img['latitude']},${img['longitude']}&rankby=distance&keyword=${img['name']}&key=${GMAPS_KEY}`, {timeout:30000});
+      // if(result.statusCode==200) {
+    	// 			var myJson = JSON.parse(result.content);
+      //       console.log(myJson.results);
+      // }
+    	// 		 else {
+    	// 			console.log("Response issue: ", result.statusCode);
+    	// 			var errorJson = JSON.parse(result.content);
+    	// 			throw new Meteor.Error(result.statusCode, errorJson.error);
+    	// 		}
     }
   }
 }
