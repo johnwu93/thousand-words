@@ -14,7 +14,7 @@ const formatSimpleData = function formatSimpleData({
   category, latitude, longitude, url, name,
 }) {
   return {
-    category,
+    categories: category,
     lat: latitude,
     long: longitude,
     url,
