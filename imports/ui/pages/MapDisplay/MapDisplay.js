@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Col, Grid, Row } from 'react-bootstrap';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import Map from '../../components/Map/Map';
 
@@ -29,7 +30,7 @@ const data3 = {
   lat: 34.412819,
   long: -119.847095,
   type: 'Music',
-  url: 'http://via.placeholder.com/350x150',
+  url: 'https://scontent.cdninstagram.com/vp/8df1d4d946d467bd1454622b8ddfd373/5A66342A/t51.2885-15/s320x320/e15/22430471_298987133919169_4631210793726115840_n.jpg',
 };
 
 class MapDisplay extends Component {
@@ -60,7 +61,11 @@ class MapDisplay extends Component {
       <Grid>
         <Row className="MapDisplay">
           <Col className="Col" xs={12} sm={6}>
-            <NavPhotoList photos={[data1, data2, data3]} hoverKey={this.state.hoverKey} />
+            <Scrollbars
+              style={{ height: '100vh' }}
+            >
+              <NavPhotoList photos={[data1, data2, data3]} hoverKey={this.state.hoverKey} />
+            </Scrollbars>
           </Col>
 
 
