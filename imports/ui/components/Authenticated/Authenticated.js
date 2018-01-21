@@ -9,11 +9,11 @@ const Authenticated = ({
     path={path}
     exact={exact}
     render={props => (
-      authenticated ?
-        (React.createElement(component, {
-          ...props, ...rest, loggingIn, authenticated,
-        })) :
-        (<Redirect to="/login" />)
+      authenticated ? (React.createElement(component, {
+        ...props, ...rest, loggingIn, authenticated,
+      })) : (
+        loggingIn ? '' : (<Redirect to="/" />)
+      )
     )}
   />
 );

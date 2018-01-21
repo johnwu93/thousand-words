@@ -38,7 +38,7 @@ class ShareModal extends React.Component {
         >
           <Modal.Body ref={body => (this.body = body)}>
             <h4 className="text-center">You brought your past experiences to life. <br />It's time to share it 🎉</h4>
-            <h5 className="text-center">{`http://localhost:3000/${this.props.shortenUrl}`}</h5>
+            <h5 className="text-center">{`https://c81e11bb.ngrok.io/${this.props.shortenUrl}`}</h5>
           </Modal.Body>
         </Modal>
       </div>

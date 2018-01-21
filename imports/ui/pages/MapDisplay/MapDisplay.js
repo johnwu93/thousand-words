@@ -41,6 +41,7 @@ class MapDisplay extends Component {
 
   componentDidMount() {
     const { match, history } = this.props;
+    console.log("visiting")
     if (match.params.id) {
       Meteor.call('users.findId', match.params.id, (error, userId) => {
         if (userId) {
@@ -71,9 +72,11 @@ class MapDisplay extends Component {
       if (snapshot.val() !== null) {
         const photos = snapshot.val();
         const formattedPhotos = formatFetchedData(photos);
-        const firstLat = formattedPhotos[0].lat;
-        const firstLong = formattedPhotos[0].long;
-        this.setState({ photos, coords: [firstLat, firstLong] });
+        if (formattedPhotos.length > 1) {
+          this.setState({ photos, coords: [formattedPhotos[1].lat, formattedPhotos[1].long] });
+        } else {
+          this.setState({ photos, coords: [formattedPhotos[0].lat, formattedPhotos[0].long] });
+        }
       }
     });
   }
