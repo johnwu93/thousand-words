@@ -11,6 +11,10 @@ import { K_SIZE } from './MarkerStyle.js';
 
 const API_KEY = 'AIzaSyB5iietztYKIpB-vD81e0mCpAgofaIayHY';
 
+const FancyFont = () => (
+  <i className="fa fa-send fa-3x" />
+);
+
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +43,7 @@ class Map extends Component {
           key={item.id}
           lat={item.lat}
           lng={item.long}
-          text={item.type}
+          text={<FancyFont />}
           hover={this.props.hoverKey === item.id}
         />
       ));
