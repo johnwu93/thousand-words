@@ -87,6 +87,11 @@ div.row_landing.row {
 
     > h1 {
       color: $gray;
+      font-weight: bold;
+    }
+
+    > p {
+      font-weight: bold;
     }
   }
 }
