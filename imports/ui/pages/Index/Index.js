@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import OAuthLoginButtons from '../../components/OAuthLoginButtons/OAuthLoginButtons';
 
 import './Index.scss';
+import '../../components/DesktopPhoto/DesktopPhoto.scss';
 
 class Index extends Component {
   redirect() {
@@ -17,21 +18,24 @@ class Index extends Component {
 
   render() {
     return (
-      <div className="Index">
-        <h1>Getting Started</h1>
-        <p>Bring past experiences to life</p>
-        <div className="Signup">
-          <Row>
-            <Col xs={12}>
-              <OAuthLoginButtons
-                history={this.props.history}
-                services={['instagram', 'facebook']}
-              />
-            </Col>
-          </Row>
-        </div>
-        {this.redirect()}
-      </div>
+
+      <Row className="row_landing">
+        <Col xs={6} xsOffset={3} sm={4} smOffset={4} className="Index" style={{ padding: 0, marginTop: '15vh', marginBottom: '30vh' }}>
+          <h1 style={{ color: '#555' }}>Getting Started</h1>
+          <p>Bring past experiences to life</p>
+          <div className="Signup">
+            <Row>
+              <Col xs={12}>
+                <OAuthLoginButtons
+                  history={this.props.history}
+                  services={['instagram', 'facebook']}
+                />
+              </Col>
+            </Row>
+          </div>
+          {this.redirect()}
+        </Col>
+      </Row>
     );
   }
 }
