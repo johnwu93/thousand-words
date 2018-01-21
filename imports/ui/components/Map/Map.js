@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import controllable from 'react-controllables';
 import PropTypes from 'prop-types';
@@ -61,7 +62,7 @@ class Map extends Component {
         >
           {Markers}
         </GoogleMap>
-        <ShareModal shortenUrl={this.props.shortenUrl} />
+        {Meteor.userId() ? <ShareModal shortenUrl={this.props.shortenUrl} /> : '' }
       </div>
     );
   }

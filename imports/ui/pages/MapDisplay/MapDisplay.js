@@ -42,23 +42,25 @@ class MapDisplay extends Component {
 
   componentDidMount() {
     const { match, history } = this.props;
-    // let userId = Meteor.userId();
-    // if (match.params.id) {
-    //   // find user with matching url
-    // }
-    const userId = match.params.id ? match.params.id : Meteor.userId();
-
-    if (!userId) {
-      history.push('/');
-    } else {
-      firebase.database().ref(`LatLong/${userId}`).once('value').then((snapshot) => {
-        snapshot.val() == null ? history.push('/') : this.setState({ photos: snapshot.val() });
+    if (match.params.id) {
+      Meteor.call('users.findId', match.params.id, (error, userId) => {
+        userId ? this.fetchData(userId) : history.push('/');
       });
+    } else if (Meteor.userId()) {
+      this.fetchData(Meteor.userId());
     }
   }
 
   setHoverKey(key) {
     this.setState({ hoverKey: key });
+  }
+
+  fetchData(userId) {
+    firebase.database().ref(`LatLong/${userId}`).once('value').then((snapshot) => {
+      if (snapshot.val() !== null) {
+        this.setState({ photos: snapshot.val() })
+      }
+    });
   }
 
   render() {
