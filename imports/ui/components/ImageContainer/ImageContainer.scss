@@ -3,15 +3,21 @@
 
 div.ImageContainer {
 
-  img.photo-fit.py2.size {
+  position: relative;
+  text-align: center;
+
+  > img.photo-fit.py2.size {
     position: relative;
   }
 
-  h6 {
-    position: absolute;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    top: 50px;
+  > div {
+      position: absolute;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      top: 40%;
+      left: 40%;
+      display: none;
+      color: white;
   }
 
 }
