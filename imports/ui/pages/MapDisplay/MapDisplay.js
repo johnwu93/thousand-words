@@ -59,6 +59,17 @@ class MapDisplay extends Component {
     this.setHoverKey = this.setHoverKey.bind(this);
   }
 
+  componentDidMount() {
+    const { match, history } = this.props;
+    if (match.params.id) {
+      // check if user exists
+      // and load data from firebase
+      // if not, redirect to index page
+    } else {
+      // load data for Meteor.userId() from firebase
+    }
+  }
+
   setHoverKey(key) {
     this.setState({ hoverKey: key });
   }
@@ -82,6 +93,11 @@ class MapDisplay extends Component {
       </Grid>
     );
   }
+}
+
+MapDisplay.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 }
 
 export default MapDisplay;
