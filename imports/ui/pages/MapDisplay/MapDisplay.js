@@ -6,7 +6,6 @@ import * as firebase from 'firebase';
 
 import Map from '../../components/Map/Map';
 
-
 import './MapDisplay.scss';
 import NavPhotoList from '../../components/NavPhotoList/NavPhotoList';
 
@@ -45,8 +44,13 @@ class MapDisplay extends Component {
     const { match, history } = this.props;
     const userId = match.params.id ? match.params.id : Meteor.userId();
 
-    if (!userId) history.push('/');
-    // and load data from firebase
+    if (!userId) {
+      history.push('/');
+    } else {
+      firebase.database().ref(`LatLong/${userId}`).once('value').then((snapshot) => {
+        snapshot.val() == null ? history.push('/') : this.setState({ photos: snapshot.val() });
+      });
+    }
   }
 
   setHoverKey(key) {

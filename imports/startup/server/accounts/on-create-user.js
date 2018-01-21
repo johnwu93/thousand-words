@@ -21,7 +21,7 @@ const storeMetadata = (data) => {
       img.url = photo.images.standard_resolution.url;
       img.name = photo.location.name;
       img.caption = photo.caption.text;
-      database.ref(`LatLong/${photo.user.id}/${img.id}`).transaction((current) => {
+      database.ref(`LatLong/${Meteor.userId()}/${img.id}`).transaction((current) => {
         if (current === null) {
           return {
             latitude: img.latitude,
